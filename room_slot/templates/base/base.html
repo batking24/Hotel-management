@@ -46,9 +46,8 @@ width:190px !important;
             <div class="collapsible-body">
               <ul>
                {% if not request.session.username %}
-      <li><a href="/user/login" class="blue-text"><i class="material-icons left red-text text-lighten-2">person</i> Customer</a></li>
+      <li><a href="/user/login" class="blue-text"><i class="material-icons left red-text text-lighten-2">person</i> Member</a></li>
     <li class="divider" tabindex="-1"></li>
-    <li><a href="/manager/login1" class="blue-text"><i class="material-icons left red-text text-lighten-2">room_service</i> Room Manager</a></li>
   {% else %}
    {% if request.session.type == 'customer' %}
         <li><a href="/user/dashboard"><i class="material-icons left red-text text-lighten-2">dashboard</i> Dashboard</a></li>
@@ -64,9 +63,8 @@ width:190px !important;
       </li>
   </ul>
   <ul id='dropdown1' class='dropdown-content'>
-    <li><a href="/user/login" class="blue-text"><i class="material-icons left red-text text-lighten-2">person</i> Customer</a></li>
+    <li><a href="/user/login" class="blue-text"><i class="material-icons left red-text text-lighten-2">person</i> Member</a></li>
     <li class="divider" tabindex="-1"></li>
-    <li><a href="/manager/login1" class="blue-text"><i class="material-icons left red-text text-lighten-2">room_service</i> Room Manager</a></li>
   </ul>
     <ul id='dropdown2' class='dropdown-content'>
      {% if request.session.type == 'customer' %}
@@ -93,9 +91,7 @@ width:190px !important;
                   <li><a class="grey-text text-lighten-3" href="/contact-us">Contact Us</a></li>
                   {% if not request.session.username %}
                   {% if request.session.type == 'customer' %}
-                  <li><a class="grey-text text-lighten-3" href="/user/login">Customer</a></li>
-                  {% else %}
-                  <li><a class="grey-text text-lighten-3" href="/manager/login1">Room Manager</a></li>
+                  <li><a class="grey-text text-lighten-3" href="/user/login">Member</a></li>
                   {% endif %}
                   {% else %}
                   <li><a class="grey-text text-lighten-3" href="/logout">Logout</a></li>

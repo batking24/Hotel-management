@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'kd70*3-e22q4_2b33!ay*47fadsf41g4_oduenmx9t3t4bvr7ynm'
+SECRET_KEY = '5$d1v(5k@h_u)f#9j9kvo1bi0-f(goo_n9sasizpt9*ey4)#cs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,11 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'booking',
-    'login',
-    'room_manager',
     'customer',
-    'rest_framework',
+    'room',
+    'booking',
 ]
 
 MIDDLEWARE = [
@@ -74,23 +72,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'room_slot.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hotel_management',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'Aa!@#123akash',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -116,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE =  'Asia/Kolkata'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
