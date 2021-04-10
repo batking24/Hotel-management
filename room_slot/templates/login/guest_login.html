@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% block content%}
+<div class="row">
+  <div class="col l6 offset-l3 m8 offset-m2 s12">
+    <div class="card-panel yellow lighten-2">
+      For <b>Member</b> Signup/Login <a href="/user/login">Click Here</a>
+    </div>
+  </div>
+    <div class="col l6 offset-l3 m8 offset-m2 s12">
+        <div class="card-panel ">
+             {% if messages %}
+  {% for messsage in messages %}
+  {% if messsage.tags == 'info' %}
+ <div class='chip green white-text'>{{messsage}}</div>
+ {% endif %}
+  {% if messsage.tags == 'warning' %}
+ <div class='chip red white-text'>{{messsage}}</div>
+ {% endif %}
+ <br>
+  {% endfor %}
+  {% endif %}
+   <div id="signup" class="col s12">
+       <h4 class="center" style="font-family:Stylish">Signup as Guest</h4>
+   <form class="col s12" enctype="multipart/form-data" action="/guest/login1" method="POST">
+     <div class="row">
+     <div class="input-field col s12">
+         <i class="material-icons prefix red-text text-lighten-2">email</i>
+         <input type="email" name="email" id="email" required class="validate" placeholder="Email">  
+         <span class="helper-text" data-error="Wrong Email Format"></span>
+       </div>
+     <div class="input-field col s12">
+         <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+         <input type="text" name="fname" id="fname" required placeholder="First name">
+       </div>
+       <div class="input-field col s12">
+         <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+         <input type="text" name="lname" id="lname" required placeholder="Last name">
+       </div>
+      {% csrf_token %}
+       <div class="input-field col s12">
+        <i class="material-icons prefix red-text text-lighten-2">phone</i>
+        <input type="text" name="phone1" id="phone1" required placeholder="Phone1">
+      </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix red-text text-lighten-2">phone</i>
+        <input type="text" name="phone2" id="phone2" required placeholder="Phone2">
+      </div>
+       <div class="center">
+       <input type="submit" value="Sign Up" name="signup" class="btn green btn-large">
+       </div>
+     </div>
+   </form>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<script>
+  $(document).ready(function()
+  {
+    $('select').select2({width: "100%"});
+  });
+</script>
+{%endblock%}

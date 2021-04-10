@@ -10,7 +10,17 @@
     <div class="container">
         {% if data %}
     <h3 class="center" style="font-family: 'Oregano', cursive;margin-bottom:7%;margin-top:5%" >One more step to go...</h3>
-
+ {% if messages %}
+  {% for messsage in messages %}
+  {% if messsage.tags == 'info' %}
+ <div class='chip green white-text'>{{messsage}}</div>
+ {% endif %}
+  {% if messsage.tags == 'warning' %}
+ <div class='chip red white-text'>{{messsage}}</div>
+ {% endif %}
+ <br>
+  {% endfor %}
+  {% endif %}
         {% for  room in  data %}
            <div class="col l4 m6 s12">
             <div class="card">
@@ -20,15 +30,142 @@
                 </div>
                 <div class="card-content">
                     <span class="card-title brown-text">
-                       {{room.room_type}}
+                        {% if room.rtype == 'A' %}
+                        DELUXE
+                        {% elif room.rtype == 'B' %}
+                        SUITE
+                        {% else %}
+                        RGWR
+                        {% endif %}
                     </span>
                 </div>
               <div class="card-action red lighten-2 center">
-              <a href="/book-now/{{room.room_no}}" class="white-text">Book Now</a>
+                {% if room.rtype == 'A' %}
+           <button class="btn cancel" onclick="openForma()">Book</button>
+                <div class="form-popup" id="myForma" style="display: none">
+                <h4 class="center" style="font-family:Stylish">Enter Details</h4>
+                <form class="col s12" enctype="multipart/form-data" action="/book/{{hid}}" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                <input type="text" name="rooma" id="rooma" required placeholder="No. of rooms">
+                   </div>
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="adulta" id="adulta" required placeholder="No. of adults">
+                   </div> 
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="childa" id="childa" required placeholder="No. of children">
+                   </div> 
+                   <div class="col s12">
+                   <label for="servicea"  class="red-text text-lighten-2" style="font-size:1.4rem;font-family:'Times New Roman'">Choose a service:</label>
+                   <select name="servicea" id="servicea" style="color:#333333;background-color: #eeeeee;border:1px solid #dddddd;cursor:pointer;border-radius: 5px;display: block;width: 100px">
+                    <option>None</option>
+                   {% for k in ser %}
+                    <option>{{ k.sname }}</option>
+                   {% endfor %}
+                   </select>
+                   </div>
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="serva" id="serva" placeholder="No. of rooms to serve">
+                   </div>
+                   </div>
+                   {% csrf_token %}
+                   <div class="center">
+                   <input type="submit" value="Confirm" name="Confirm" class="btn cancel">
+                   </div>
+                   <br>
+                   <button class="btn cancel" onclick="closeForma()">Close</button>
+                   </form>
+                   </div>
+                   {% elif room.rtype == 'B' %}
+           <button class="btn cancel" onclick="openFormb()">Book</button>
+                <div class="form-popup" id="myFormb" style="display: none">
+                <h4 class="center" style="font-family:Stylish">Enter Details</h4>
+                <form class="col s12" enctype="multipart/form-data" action="/book/{{hid}}" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                <input type="text" name="roomb" id="roomb" required placeholder="No. of rooms">
+                   </div>
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="adultb" id="adultb" required placeholder="No. of adults">
+                   </div> 
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="childb" id="childb" required placeholder="No. of children">
+                   </div> 
+                   <div class="col s12">
+                   <label for="serviceb"  class="red-text text-lighten-2" style="font-size:1.4rem;font-family:'Times New Roman'">Choose a service:</label>
+                   <select name="serviceb" id="serviceb" style="color:#333333;background-color: #eeeeee;border:1px solid #dddddd;cursor:pointer;border-radius: 5px;display: block;width: 100px">
+                    <option>None</option>
+                   {% for k in ser %}
+                    <option>{{ k.sname }}</option>
+                   {% endfor %}
+                   </select>
+                   </div>
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="servb" id="servb" placeholder="No. of rooms to serve">
+                   </div>
+                   </div>
+                   {% csrf_token %}
+                   <div class="center">
+                   <input type="submit" value="Confirm" name="Confirm" class="btn cancel">
+                   </div>
+                   <br>
+                   <button class="btn cancel" onclick="closeFormb()">Close</button>
+                   </form>
+                   </div>
+                   {% else %}
+           <button class="btn cancel" onclick="openFormc()">Book</button>
+                <div class="form-popup" id="myFormc" style="display: none">
+                <h4 class="center" style="font-family:Stylish">Enter Details</h4>
+                <form class="col s12" enctype="multipart/form-data" action="/book/{{hid}}" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                <input type="text" name="roomc" id="roomc" required placeholder="No. of rooms">
+                   </div>
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="adultc" id="adultc" required placeholder="No. of adults">
+                   </div> 
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="childc" id="childc" required placeholder="No. of children">
+                   </div> 
+                   <div class="col s12">
+                   <label for="servicec"  class="red-text text-lighten-2" style="font-size:1.4rem;font-family:'Times New Roman'">Choose a service:</label>
+                   <select name="servicec" id="servicec" style="color:#333333;background-color: #eeeeee;border:1px solid #dddddd;cursor:pointer;border-radius: 5px;display: block;width: 100px">
+                    <option>None</option>
+                   {% for k in ser %}
+                    <option>{{ k.sname }}</option>
+                   {% endfor %}
+                   </select>
+                   </div>
+                   <div class="input-field col s12">
+                   <i class="material-icons prefix red-text text-lighten-2">person_pin</i>
+                   <input type="text" name="servc" id="servc" placeholder="No. of rooms to serve">
+                   </div>
+                   </div>
+                   {% csrf_token %}
+                   <div class="center">
+                   <input type="submit" value="Confirm" name="Confirm" class="btn cancel">
+                   </div>
+                   <br>
+                   <button class="btn cancel" onclick="closeFormc()">Close</button>
+                   </form>
+                   </div>
+                   {% endif%}
             </div>
             </div>
-        </div>
+            </div>
         {% endfor %}
+              <a href="/book_now" class="blue-text">Book Now</a>
         {% else %}
         <div class="card-panel">
         <p class="center"><i class="material-icons large brown-text">sentiment_very_dissatisfied</i>
@@ -42,4 +179,27 @@
         {% endif %}
     </div>
 </div>
+<script>
+    function openForma() {
+  document.getElementById("myForma").style.display = "block";
+}
+
+function closeForma() {
+  document.getElementById("myForma").style.display = "none";
+}
+function openFormb() {
+  document.getElementById("myFormb").style.display = "block";
+}
+
+function closeFormb() {
+  document.getElementById("myFormb").style.display = "none";
+}
+function openFormc() {
+  document.getElementById("myFormc").style.display = "block";
+}
+
+function closeFormc() {
+  document.getElementById("myFormc").style.display = "none";
+}
+</script>
 {% endblock %}

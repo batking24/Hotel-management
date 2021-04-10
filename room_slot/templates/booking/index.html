@@ -22,6 +22,24 @@
       <input type="date" id="end1" class="datepicker-end"/>
       <label for="end1" class="red-text text-lighten-2" style="font-size:1.4rem;font-family:'Times New Roman'">End Date</label>
     </div>
+    <div class="col s5 offset-s1">
+        <label for="location"  class="red-text text-lighten-2" style="font-size:1.4rem;font-family:'Times New Roman'">Choose a location:</label>
+        <select name="location" id="location" style="color:#333333;background-color: #eeeeee;border:1px solid #dddddd;cursor:pointer;border-radius: 5px;display: block;width: 100px">
+            {% for k in loc %}
+            <option>{{ k }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col s5 offset-s1">
+        <label for="rating"  class="red-text text-lighten-2" style="font-size:1.4rem;font-family:'Times New Roman'">Choose minimum rating:</label>
+        <select name="rating" id="rating" style="color:#333333;background-color: #eeeeee;border:1px solid #dddddd;cursor:pointer;border-radius: 5px;display: block;width: 100px">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
 <div class="center">
 <a class="btn red darken-1" href="" style="padding: 25px;line-height:3px;font-family: 'Rye', cursive;text-transform:capitalize;font-size:0.9rem" id="show_me_rooms">Show me Rooms</a>
 </div>
@@ -166,7 +184,7 @@ Room with View
             </div>
         </div>
     </div>
-</div>
+</div>   
 <script>
 // Accept datepicker-start or datepicker-end, as we need to initialize both anyway.
 $("input[class*='datepicker-']").pickadate({
@@ -206,6 +224,8 @@ room_btn.addEventListener("click",(e)=>
 e.preventDefault()
 startDate=$('.datepicker-start').val();
 endDate=$('.datepicker-end').val();
+loc=$("#location option:selected").text();
+rat=$("#rating option:selected").text();
 //d = new Date(endDate);    
 sd=new Date(startDate)
 td=new Date()
@@ -218,10 +238,12 @@ else
      var form = document.createElement("form");
     var element1 = document.createElement("input"); 
     var element2 = document.createElement("input");  
+    var element4=document.createElement("input");
+    var element5=document.createElement("input");
     var element3= document.createElement("input");  
 
     form.method = "POST";
-    form.action = "/book";   
+    form.action = "/book_hotel";   
     
     element1.name="start_date";
     element1.type="text"
@@ -232,6 +254,14 @@ else
     element2.type="text"
    element2.value=endDate;
     form.appendChild(element2);  
+    element4.name="location";
+    element4.type="text"
+    element4.value=loc;
+    form.appendChild(element4);
+    element5.name="rating";
+    element5.type="text"
+    element5.value=rat;
+    form.appendChild(element5);
      element3.value='{{csrf_token}}';
     element3.name="csrfmiddlewaretoken";
     element3.type="hidden"

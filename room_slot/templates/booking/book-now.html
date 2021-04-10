@@ -4,24 +4,67 @@
 <link href="https://fonts.googleapis.com/css?family=Oregano&display=swap" rel="stylesheet">
 <div class="row">
 <div class="col l8 offset-l2 m10 offset-m1 s12">
+  {% if tot == 0 %}
+  <h3 class="center green-text" style="font-family: 'Oregano', cursive;margin-bottom:7%;margin-top:5%" >No Booking</h3>
+  {% else %}
     <h3 class="center green-text" style="font-family: 'Oregano', cursive;margin-bottom:7%;margin-top:5%" >Click on the Confirm Booking to book your room...</h3>
+  }
+  }
  <div class="card horizontal">
       <div class="card-image ">
-        <img src="{{data.room_image.url}}">
+        <img src="{{hotel.hotel_image.url}}">
       </div>
       <div class="card-stacked">
         <div class="card-content">
-          <span class="red-text text-lighten-2" style="font-size:2rem">{{data.room_type}}</span>
+          <span class="red-text text-lighten-2" style="font-size:2rem">{{hotel.hname}}</span>
           <p><b>Stay Duration:</b> {{start}} - {{end}}</p>
-          <p><b>Room No: </b> {{data.room_no}}</p>
-          <p><b>Total Bill: </b> {{no_of_days}}*{{data.price}} = {{bill}} rupees</p>
-          <p><b>Room Manager: </b>{{roomManager}}</p>
+          {% if room1 != 0 %}
+          <p><b>SUITE:</b>{{room1}}</p>
+          <p><b>Adults:</b>{{adult1}}</p>
+          <p><b>Children:</b>{{child1}}</p>
+          {% if service1 != "Not availed"%}
+          {% for s in service1 %}
+          <p><b>Services:</b>{{s}}</p>
+          {% endfor %}
+          {% else %}
+          <p><b>Services:</b>{{service1}}</p>
+          {% endif %}
+          <p><b>Room to serve:</b>{{serv1}}</p>
+          {% endif %}
+          {% if room2 != 0 %}
+          <p><b>SUITE:</b>{{room2}}</p>
+          <p><b>Adults:</b>{{adult2}}</p>
+          <p><b>Children:</b>{{child2}}</p>
+          {% if service2 != "Not availed"%}
+          {% for s in service2 %}
+          <p><b>Services:</b>{{s}}</p>
+          {% endfor %}
+          {% else %}
+          <p><b>Services:</b>{{service2}}</p>
+          {% endif %}
+          <p><b>Room to serve:</b>{{serv2}}</p>
+          {% endif %}
+          {% if room3 != 0 %}
+          <p><b>SUITE:</b>{{room3}}</p>
+          <p><b>Adults:</b>{{adult3}}</p>
+          <p><b>Children:</b>{{child3}}</p>
+          {% if service3 != "Not availed"%}
+          {% for s in service3 %}
+          <p><b>Services:</b>{{s}}</p>
+          {% endfor %}
+          {% else %}
+          <p><b>Services:</b>{{service3}}</p>
+          {% endif %}
+          <p><b>Room to serve:</b>{{serv3}}</p>
+          {% endif %}
+          <p><b>Total Bill: </b>{{bill}} rupees</p>
         </div>
         <div class="card-action center grey lighten-5" >
           <a href="/confirm-now-booking" class="blue-text text-darken-2">Confirm Booking</a>
         </div>
       </div>
     </div>
+    {% endif %}
 </div>
 </div>
 {% endblock %}

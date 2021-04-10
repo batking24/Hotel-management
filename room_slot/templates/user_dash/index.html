@@ -36,27 +36,23 @@
         <thead>
           <tr>
               <th>Booking ID</th>
-              <th>Booked On</th>
               <th>Start Date</th>
               <th>End Date</th>
               <th>Billing</th>
-              <th>Room Manager</th>
               <th>Action</th>
           </tr>
         </thead>
         <tbody>
        {% for d in data %}
                  <tr>
-            <td>{{d.id}}</td>
-            <td>{{d.booked_on}}</td>
-            <td>{{d.start_day}}</td>
-            <td>{{d.end_day}}</td>
-            <td>{{d.amount}}</td>
-            <td>{{d.room_no.manager.username}}</td>
+            <td>{{d.book_no}}</td>
+            <td>{{d.checkin}}</td>
+            <td>{{d.checkout}}</td>
+            <td>{{d.cost}}</td>
             {% if d.is_past_due %}
             <td><a class="btn disabled">cancel Booking</a></td>
             {% else %}
-            <td><a class="btn cancel-btn red" id="{{d.id}}">cancel Booking</a></td>
+            <td><a class="btn cancel-btn red" id="{{d.book_no}}">cancel Booking</a></td>
             {% endif %}
           </tr>
        {% endfor %}
