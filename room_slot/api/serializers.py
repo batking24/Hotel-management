@@ -5,6 +5,8 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = ['id','username', 'password', 'email', 'state','pin_code','address','profile_pic']
+
+#You can also set the fields attribute to the special value '__all__' to indicate that all fields in the model should be used.
 class RoomsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rooms

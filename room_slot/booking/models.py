@@ -7,6 +7,8 @@ class Contact(models.Model):
     message=models.TextField(max_length=2000)
     def __str__(self):
         return self.name
+
+        
 class Rooms(models.Model):
     manager=models.ForeignKey(RoomManager, on_delete=models.CASCADE)
     room_no=models.CharField(max_length=5)

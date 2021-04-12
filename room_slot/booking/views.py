@@ -17,7 +17,7 @@ def contact(request):
      data=Contact(name=username,email=email,message=message)
      data.save()
      return render(request,"contact/contact.html",{'message':'Thank you for contacting us.'})
-def book(request):
+def book(request): # after dates are given
     if request.method=="POST":
         start_date=request.POST['start_date']
         end_date=request.POST['end_date']

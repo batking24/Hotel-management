@@ -3,6 +3,7 @@ from login.models import RoomManager
 from booking.models import Booking,Rooms
 from datetime import date
 from django.contrib import messages
+
 import datetime
 def dashboard(request):
   if not request.session.get('username',None):

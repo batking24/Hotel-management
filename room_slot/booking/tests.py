@@ -4,6 +4,7 @@ from .models import Booking
 from login.models import Customer, RoomManager
 import datetime
 from django.urls import reverse
+
 class RoomsTestCases(TestCase):
     def setUp(self):
         RoomManager.objects.create(username='vivek')
